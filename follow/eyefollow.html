@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wish Form - Lucky Clover & Shooting Star</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <audio id="pianoAudio" loop>
-        <source src="https://assets.mixkit.co/active_storage/sfx/2544/2544-preview.mp3" type="audio/mpeg">
-    </audio>
 
     <header>
         <div class="constellation-board">
             ✨ <span id="wishesCount">Wishes Sent: 0</span>
         </div>
-        
+
         <div id="pixelClock" class="pixel-clock">00:00</div>
 
         <div class="controls">
@@ -44,21 +44,23 @@
         <div class="wish-container">
             <div class="clover-container" id="clover">🍀</div>
             <h2>Write a Wish</h2>
-            <textarea class="wish-input" id="wishInput" placeholder="May my dreams slowly grow into stars..."></textarea>
-            <button class="luck-btn" id="luckBtn">Luck Sent ✨</button>
+            <textarea class="wish-input" id="wishInput"
+                placeholder="May my dreams slowly grow into stars..."></textarea>
+            <button class="luck-btn" id="luckBtn">Luck Sent </button>
         </div>
 
         <div class="char-col">
             <div class="char-wrap" id="charWrap">
                 <img id="img-base" src="../assest/original-assests.png" alt="character">
-                <div class="eyes-container">
+                <div class="eyes-container" id="eyesContainer">
                     <img id="img-eyes" src="../assest/eye-assets.png" alt="eyes">
-                    <img id="img-expr" src="" alt="expression">
                 </div>
+                <img id="img-expr" src="" alt="expression">
             </div>
         </div>
     </main>
 
     <script src="script.js"></script>
 </body>
+
 </html>

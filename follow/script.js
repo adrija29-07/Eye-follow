@@ -50,15 +50,20 @@ function setState(s) {
 
     state = s;
 
+    const imgBase = document.getElementById('img-base');
+    const eyesContainer = document.getElementById('eyesContainer');
+
     if (s === 'default') {
-        imgEyes.style.display = '';
+        imgBase.style.opacity = '1';
+        eyesContainer.style.opacity = '1';
         imgExpr.classList.remove('visible');
         isBlinkClosed = false;
         scheduleNextBlink();
         startIdleTimer();
     } else {
         if (s !== 'blink') {
-            imgEyes.style.display = 'none';
+            imgBase.style.opacity = '0';
+            eyesContainer.style.opacity = '0';
         }
         if (IMGS[s]) {
             imgExpr.src = IMGS[s];
@@ -79,14 +84,18 @@ function doBlink() {
     }
     
     isBlinkClosed = !isBlinkClosed;
+    const imgBase = document.getElementById('img-base');
+    const eyesContainer = document.getElementById('eyesContainer');
     
     if (isBlinkClosed) {
-        imgEyes.style.display = 'none';
+        imgBase.style.opacity = '0';
+        eyesContainer.style.opacity = '0';
         imgExpr.src = IMGS.blink;
         imgExpr.classList.add('visible');
     } else {
         imgExpr.classList.remove('visible');
-        imgEyes.style.display = '';
+        imgBase.style.opacity = '1';
+        eyesContainer.style.opacity = '1';
     }
     
     scheduleNextBlink();
@@ -205,7 +214,7 @@ themeToggle.addEventListener('click', () => {
 
     if (isNight) {
         setState('sleepy');
-        resetTimer = setTimeout(() => setState('default'), 4000);
+        // Do not reset timer, let it stay sleepy until interaction
     } else {
         setState('default');
     }

@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -21,15 +23,20 @@
 }
 
 body {
+
     font-family: 'Nunito', sans-serif;
     min-height: 100vh;
     overflow: hidden;
     background-color: #87CEEB;
     background-image: url('../assest/star%20morning.jpg');
-    background-size: cover;
+
+    background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
+
     transition: background-image 1s ease-in-out;
     color: var(--text-color);
+
 }
 
 [data-theme="dark"] body {
@@ -44,13 +51,37 @@ body {
     opacity: 0.8;
     animation: float-cloud linear infinite;
 }
-.cloud-1 { top: 10%; animation-duration: 40s; width: 250px; }
-.cloud-2 { top: 30%; animation-duration: 60s; width: 180px; left: -200px; animation-delay: -20s;}
-.cloud-3 { top: 15%; animation-duration: 50s; width: 300px; left: -250px; animation-delay: -10s;}
+
+.cloud-1 {
+    top: 10%;
+    animation-duration: 40s;
+    width: 250px;
+}
+
+.cloud-2 {
+    top: 30%;
+    animation-duration: 60s;
+    width: 180px;
+    left: -200px;
+    animation-delay: -20s;
+}
+
+.cloud-3 {
+    top: 15%;
+    animation-duration: 50s;
+    width: 300px;
+    left: -250px;
+    animation-delay: -10s;
+}
 
 @keyframes float-cloud {
-    0% { transform: translateX(-350px); }
-    100% { transform: translateX(100vw); }
+    0% {
+        transform: translateX(-350px);
+    }
+
+    100% {
+        transform: translateX(100vw);
+    }
 }
 
 /* Sparkles / Star Dust */
@@ -67,8 +98,15 @@ body {
 }
 
 @keyframes sparkle-fade {
-    0% { opacity: 1; transform: scale(1) translateY(0); }
-    100% { opacity: 0; transform: scale(0.2) translateY(-30px); }
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.2) translateY(-30px);
+    }
 }
 
 /* Rain turning into stars */
@@ -76,19 +114,30 @@ body {
     position: absolute;
     width: 2px;
     height: 20px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.8));
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
     animation: rain-fall 3s linear forwards;
     z-index: 5;
 }
 
 @keyframes rain-fall {
-    0% { transform: translateY(-50px); opacity: 1; }
-    80% { transform: translateY(80vh); opacity: 1; width: 2px; height: 20px; background: rgba(255,255,255,0.8); }
-    100% { 
-        transform: translateY(85vh) scale(2); 
-        opacity: 0; 
-        width: 12px; 
-        height: 12px; 
+    0% {
+        transform: translateY(-50px);
+        opacity: 1;
+    }
+
+    80% {
+        transform: translateY(80vh);
+        opacity: 1;
+        width: 2px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    100% {
+        transform: translateY(85vh) scale(2);
+        opacity: 0;
+        width: 12px;
+        height: 12px;
         background: #FFD700;
         clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
         border-radius: 0;
@@ -112,7 +161,7 @@ header {
     font-size: 24px;
     font-weight: 800;
     color: #fff;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -123,11 +172,11 @@ header {
     font-family: 'Press Start 2P', cursive;
     font-size: 16px;
     color: #fff;
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
-    background: rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
     padding: 10px 15px;
     border-radius: 10px;
-    border: 2px solid rgba(255,255,255,0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
 }
 
@@ -182,7 +231,7 @@ header {
 }
 
 .audio-toggle:hover {
-    background: rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .controls {
@@ -214,7 +263,7 @@ main {
     flex-direction: column;
     align-items: center;
     width: 400px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .clover-container {
@@ -285,6 +334,7 @@ h2 {
     user-select: none;
     pointer-events: auto;
     cursor: pointer;
+    mix-blend-mode: multiply;
 }
 
 .char-wrap img {
@@ -298,7 +348,7 @@ h2 {
 
 #img-base {
     z-index: 1;
-    mix-blend-mode: multiply; /* Removes white background from character */
+    transition: opacity 0.2s;
 }
 
 .eyes-container {
@@ -308,17 +358,32 @@ h2 {
     width: 100%;
     height: 100%;
     transform: scale(0.65);
-    transform-origin: center 48%; /* Centers it with the face eye sockets */
+    transform-origin: center 48%;
+    /* Centers it with the face eye sockets */
     pointer-events: none;
-    z-index: 2; /* Ensures eyes sit on top of the base image properly */
+    z-index: 2;
+    /* Ensures eyes sit on top of the base image properly */
+    transition: opacity 0.0s;
 }
 
 #img-eyes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     z-index: 2;
     transition: transform 0.05s linear;
 }
 
 #img-expr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     z-index: 3;
     opacity: 0;
     transition: opacity 0.2s;
@@ -339,6 +404,13 @@ h2 {
 }
 
 @keyframes fly-to-sky {
-    0% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
-    100% { opacity: 0; transform: translateY(-100vh) translateX(150px) scale(0.3) rotate(360deg); }
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) translateX(150px) scale(0.3) rotate(360deg);
+    }
 }
