@@ -1,374 +1,246 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mochi — Login</title>
+    <title>Wish Form - Lucky Clover & Shooting Star</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
         :root {
-            --bg-page: #aef0e2;
-            --bg-input: #FFFFFF;
-            --border-input: #6c4a8c;
-            --text-primary: #2C2418;
-            --text-secondary: #7A6A56;
-            --text-label: #3A6B52;
-            --accent-coral: #c0694c;
-            --logo-1: #4A8C72;
-            --logo-2: #D85A30;
-            --logo-3: #4A8C72;
-            --logo-4: #E8A838;
-            --btn-bg: #3A6B52;
-            --btn-text: #FFFFFF;
-            --tab-active-bg: #3A6B52;
-            --tab-active-txt: #FFFFFF;
-            --tab-idle-txt: #3A6B52;
-            --tab-border: #3A6B52;
-            --toggle-track: #d3c090;
-            --toggle-thumb: #3A6B52;
-            --error-bg: #FDECEA;
-            --header-bg: #ecd096;
-            --input-shadow: rgba(74, 140, 114, 0.15);
+            --bg-glass: rgba(255, 255, 255, 0.2);
+            --border-glass: rgba(255, 255, 255, 0.4);
+            --text-color: #2C2418;
         }
 
         [data-theme="dark"] {
-            --bg-page: #36312a;
-            --bg-input: #2A2318;
-            --border-input: #5DCAA5;
-            --text-primary: #F0E8D5;
-            --text-secondary: #A89880;
-            --text-label: #5DCAA5;
-            --accent-coral: #F0997B;
-            --logo-1: #5DCAA5;
-            --logo-2: #F0997B;
-            --logo-3: #5DCAA5;
-            --logo-4: #FAC775;
-            --btn-bg: #5DCAA5;
-            --btn-text: #1C1812;
-            --tab-active-bg: #5DCAA5;
-            --tab-active-txt: #1C1812;
-            --tab-idle-txt: #5DCAA5;
-            --tab-border: #5DCAA5;
-            --toggle-track: #4c4436;
-            --toggle-thumb: #5DCAA5;
-            --error-bg: #2A1A14;
-            --header-bg: #24221e;
-            --input-shadow: rgba(93, 202, 165, 0.1);
+            --bg-glass: rgba(0, 0, 0, 0.4);
+            --border-glass: rgba(255, 255, 255, 0.2);
+            --text-color: #F0E8D5;
         }
 
         body {
-            background: var(--bg-page);
-            color: var(--text-primary);
             font-family: 'Nunito', sans-serif;
-            font-weight: 600;
             min-height: 100vh;
-            transition: background 0.3s, color 0.3s;
+            overflow: hidden;
+            background-color: #87CEEB;
+            background-image: url('../assest/bright-mode.png');
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+            color: var(--text-color);
         }
 
+        [data-theme="dark"] body {
+            background-image: url('../assest/night%20mode.png');
+            background-color: #0b1021;
+        }
+
+        /* Clouds */
+        .cloud {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.8;
+            animation: float-cloud linear infinite;
+        }
+        .cloud-1 { top: 10%; animation-duration: 40s; width: 250px; }
+        .cloud-2 { top: 30%; animation-duration: 60s; width: 180px; left: -200px; animation-delay: -20s;}
+        .cloud-3 { top: 15%; animation-duration: 50s; width: 300px; left: -250px; animation-delay: -10s;}
+
+        @keyframes float-cloud {
+            0% { transform: translateX(-350px); }
+            100% { transform: translateX(100vw); }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.8), 0 0 20px 5px #f6d365;
+            pointer-events: none;
+            z-index: 9999;
+            animation: sparkle-fade 1s forwards;
+        }
+
+        @keyframes sparkle-fade {
+            0% { opacity: 1; transform: scale(1) translateY(0); }
+            100% { opacity: 0; transform: scale(0.2) translateY(-30px); }
+        }
+
+        /* Rain turning into stars */
+        .raindrop {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.8));
+            animation: rain-fall 3s linear forwards;
+            z-index: 5;
+        }
+
+        @keyframes rain-fall {
+            0% { transform: translateY(-50px); opacity: 1; }
+            80% { transform: translateY(80vh); opacity: 1; width: 2px; height: 20px; background: rgba(255,255,255,0.8); }
+            100% { 
+                transform: translateY(85vh) scale(2); 
+                opacity: 0; 
+                width: 12px; 
+                height: 12px; 
+                background: #FFD700;
+                clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+                border-radius: 0;
+            }
+        }
+
+        /* Top Bar */
         header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 100;
-            background: var(--header-bg);
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 28px;
-            height: 60px;
-            transition: background 0.9s;
+            padding: 20px 40px;
+            align-items: center;
         }
 
-        .header-left {
+        .constellation-board {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 10px;
         }
 
-        .hamburger {
+        .theme-toggle, .audio-toggle {
+            background: var(--bg-glass);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--border-glass);
+            border-radius: 30px;
+            padding: 8px 16px;
             cursor: pointer;
+            color: var(--text-color);
+            font-weight: bold;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
+            gap: 8px;
+            font-family: inherit;
         }
 
-        .hamburger img {
-            height: 28px;
-            width: auto;
-            object-fit: contain;
+        .theme-toggle:hover, .audio-toggle:hover {
+            background: rgba(255,255,255,0.4);
         }
 
-        .logo img {
-            height: 36px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .header-right {
+        .controls {
             display: flex;
-            align-items: center;
-            gap: 16px;
+            gap: 15px;
         }
 
-        .theme-toggle {
-            display: flex;
-            align-items: center;
-            background: var(--toggle-track);
-            border-radius: 20px;
-            padding: 3px;
-            cursor: pointer;
-            gap: 2px;
-            transition: background 0.3s;
-            border: none;
-            outline: none;
-        }
-
-        .theme-toggle .icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .theme-toggle .icon img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-        }
-
-        .theme-toggle .icon.active {
-            background: var(--toggle-thumb);
-        }
-
-        .tabs-wrap {
-            display: flex;
-            justify-content: center;
-            margin-top: 18px;
-        }
-
-        .tabs {
-            display: inline-flex;
-            align-items: center;
-            background: var(--toggle-track);
-            border-radius: 20px;
-            padding: 3px;
-            gap: 2px;
-            transition: background 0.3s;
-            border: none;
-        }
-
-        .tab {
-            height: 28px;
-            padding: 0 18px;
-            font-size: 13px;
-            font-weight: 600;
-            font-family: 'Nunito', sans-serif;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            transition: all 0.2s;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-        }
-
-        .tab.active {
-            background: var(--toggle-thumb);
-            color: var(--tab-active-txt);
-            border-radius: 16px;
-        }
-
+        /* Main Content */
         main {
-            min-height: 100vh;
+            position: relative;
+            z-index: 10;
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: center;
-            padding: 80px 24px 24px;
+            height: 100vh;
+            gap: 60px;
+            padding-top: 50px;
         }
 
-        .page-content {
+        /* Wish Form */
+        .wish-container {
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            border: 2px solid var(--border-glass);
+            padding: 40px;
+            border-radius: 25px;
             display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            gap: 20px;
-            width: 100%;
-            max-width: 960px;
+            flex-direction: column;
+            align-items: center;
+            width: 400px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
         }
 
-        .slogan {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
+        .clover-container {
+            font-size: 50px;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+            text-shadow: 0 0 20px rgba(168, 230, 150, 0.8);
         }
 
-        .slogan img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .form-col {
-            flex: 1;
-            max-width: 400px;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            font-family: 'Nunito', sans-serif;
-            letter-spacing: 0.8px;
-            color: var(--text-label);
-            margin-bottom: 4px;
-            margin-left: 14px;
-            text-transform: uppercase;
-            transition: color 0.3s;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 13px 20px;
-            border: 1.5px solid var(--border-input);
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            font-family: 'Nunito', sans-serif;
-            background: var(--bg-input);
-            color: var(--text-primary);
-            outline: none;
-            transition: all 0.2s;
-            box-shadow: 0 2px 8px var(--input-shadow);
-        }
-
-        .form-input:focus {
-            box-shadow: 0 0 0 3px var(--input-shadow), 0 2px 8px var(--input-shadow);
-            border-color: var(--text-label);
-        }
-
-        .form-input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .forgot {
-            display: block;
-            text-align: right;
-            font-size: 15px;
-            font-weight: 600;
-            font-family: 'Nunito', sans-serif;
-            color: var(--accent-coral);
-            text-decoration: none;
-            margin-top: 6px;
-            transition: opacity 0.2s;
-        }
-
-        .forgot:hover {
-            opacity: 0.75;
-        }
-
-        .btn-login {
-            width: 100%;
-            margin-top: 28px;
-            padding: 14px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            background: var(--btn-bg);
-            color: var(--btn-text);
-            font-family: 'Nunito', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.2s;
-            letter-spacing: 0.3px;
-        }
-
-        .btn-login:hover {
-            opacity: 0.88;
-            transform: translateY(-1px);
-        }
-
-        .btn-login:active {
-            transform: scale(0.98);
-        }
-
-        .error-msg {
-            display: none;
-            margin-top: 14px;
-            padding: 6px 16px;
-            color: var(--accent-coral);
-            font-size: 13px;
+        h2 {
+            margin-bottom: 20px;
             text-align: center;
         }
 
-        .error-msg.visible {
-            display: block;
+        .wish-input {
+            width: 100%;
+            height: 120px;
+            border-radius: 15px;
+            border: 2px solid var(--border-glass);
+            padding: 15px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.7);
+            margin-bottom: 25px;
+            transition: all 0.3s;
         }
 
-        @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            15% {
-                transform: translateX(-8px);
-            }
-
-            30% {
-                transform: translateX(8px);
-            }
-
-            45% {
-                transform: translateX(-6px);
-            }
-
-            60% {
-                transform: translateX(6px);
-            }
-
-            75% {
-                transform: translateX(-3px);
-            }
-
-            90% {
-                transform: translateX(3px);
-            }
+        [data-theme="dark"] .wish-input {
+            background: rgba(20, 20, 30, 0.7);
+            color: #fff;
         }
 
-        .shake {
-            animation: shake 0.5s ease;
+        .wish-input:focus {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            border-color: #fff;
         }
 
-        .char-col {
-            flex: 0 0 auto;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
+        .luck-btn {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #fff;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 20px rgba(255, 165, 0, 0.4);
+            width: 100%;
         }
 
+        .luck-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 165, 0, 0.6);
+        }
+
+        .luck-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Character */
         .char-wrap {
             position: relative;
-            width: 520px;
-            height: 610px;
+            width: 500px;
+            height: 600px;
             user-select: none;
             pointer-events: auto;
             cursor: pointer;
@@ -383,158 +255,163 @@
             object-fit: contain;
         }
 
-        #img-base {
-            z-index: 1;
+        #img-base { z-index: 1; }
+        #img-eyes { z-index: 2; transition: transform 0.05s linear; }
+        #img-expr { z-index: 3; opacity: 0; transition: opacity 0.2s; }
+        #img-expr.visible { opacity: 1; }
+
+        /* Dream Jar */
+        .dream-jar-wrapper {
+            position: absolute;
+            bottom: 30px;
+            left: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        #img-eyes {
-            z-index: 2;
-            transition: transform 0.05s linear;
+        .dream-jar {
+            width: 100px;
+            height: 130px;
+            background: rgba(255,255,255,0.15);
+            border: 3px solid rgba(255,255,255,0.4);
+            border-radius: 5px 5px 20px 20px;
+            backdrop-filter: blur(5px);
+            z-index: 15;
+            display: flex;
+            align-content: flex-end;
+            justify-content: center;
+            flex-wrap: wrap-reverse;
+            padding: 10px;
+            gap: 3px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 -20px 30px rgba(255,255,255,0.2), 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        #img-expr {
-            z-index: 3;
-            opacity: 0;
+        .dream-jar::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 10px;
+            width: 80px;
+            height: 25px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
         }
 
-        #img-expr.visible {
-            opacity: 1;
+        .jar-star {
+            width: 12px;
+            height: 12px;
+            background: #FFD700;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+            animation: pulse-star 2s infinite alternate;
         }
 
-        @media (max-width: 680px) {
-            .page-content {
-                flex-direction: column;
-                gap: 0;
-            }
-
-            .char-col {
-                order: -1;
-                width: 100%;
-                justify-content: center;
-            }
-
-            .char-wrap {
-                width: 220px;
-                height: 272px;
-            }
-
-            .form-col {
-                max-width: 100%;
-            }
-
-            header {
-                padding: 0 16px;
-            }
-
-            .tab {
-                padding: 6px 14px;
-                font-size: 13px;
-            }
+        @keyframes pulse-star {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
         }
+
+        /* Flying Wish */
+        .flying-wish {
+            position: absolute;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 200;
+            animation: fly-to-sky 2.5s forwards cubic-bezier(0.25, 0.1, 0.25, 1);
+            filter: drop-shadow(0 0 10px #FFD700);
+        }
+
+        @keyframes fly-to-sky {
+            0% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(-80vh) translateX(100px) scale(0.3) rotate(180deg); }
+        }
+
     </style>
 </head>
-
 <body>
 
+    <audio id="pianoAudio" loop>
+        <source src="https://assets.mixkit.co/active_storage/sfx/2544/2544-preview.mp3" type="audio/mpeg">
+    </audio>
+
     <header>
-        <div class="header-left">
-            <span class="hamburger">
-                <img src="menu.png" alt="Menu">
-            </span>
-
-            <div class="logo">
-                <img src="Logo.png" alt="Mochi">
-            </div>
+        <div class="constellation-board">
+            ✨ <span id="wishesCount">Wishes Sent: 0</span>
         </div>
-
-        <div class="header-right">
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <span class="icon active" id="sunIcon">
-                    <img src="SunToggle.png" alt="Light">
-                </span>
-
-                <span class="icon" id="moonIcon">
-                    <img src="MoonToggle.png" alt="Dark">
-                </span>
-            </button>
+        <div class="controls">
+            <button class="audio-toggle" id="audioToggle">🎵 Play Piano</button>
+            <button class="theme-toggle" id="themeToggle">🌙 Night Mode</button>
         </div>
     </header>
 
+    <!-- Clouds -->
+    <img src="../assest/clouds.png" class="cloud cloud-1" alt="">
+    <img src="../assest/clouds%202.png" class="cloud cloud-2" alt="">
+    <img src="../assest/clouds%203.png" class="cloud cloud-3" alt="">
+
     <main>
-        <div class="page-content">
+        <div class="wish-container">
+            <div class="clover-container" id="clover">🍀</div>
+            <h2>Write a Wish</h2>
+            <textarea class="wish-input" id="wishInput" placeholder="May my dreams slowly grow into stars..."></textarea>
+            <button class="luck-btn" id="luckBtn">Luck Sent ✨</button>
+        </div>
 
-            <div class="form-col">
-
-                <div class="slogan">
-                    <img src="slogan.png" alt="Slogan">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="emailInput">Email</label>
-
-                    <input class="form-input" id="emailInput" type="email" placeholder="Sarah.example@gmail.com"
-                        autocomplete="off">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="passwordInput">Password</label>
-
-                    <input class="form-input" id="passwordInput" type="password" placeholder="••••••••••">
-
-                    <a class="forgot" href="#">forgot password?</a>
-                </div>
-
-                <button class="btn-login" id="loginBtn">Login</button>
-
-                <div class="error-msg" id="errorMsg">
-                    Incorrect password. Please try again.
-                </div>
-
-                <div class="tabs-wrap">
-                    <div class="tabs">
-                        <button class="tab active" id="tabLogin">Login</button>
-                        <button class="tab" id="tabSignup">Signup</button>
-                    </div>
-                </div>
-
+        <div class="char-col">
+            <div class="char-wrap" id="charWrap">
+                <img id="img-base" src="../assest/original-assests.png" alt="character">
+                <img id="img-eyes" src="../assest/eyes-assests.png" alt="eyes">
+                <img id="img-expr" src="" alt="expression">
             </div>
-
-            <div class="char-col">
-                <div class="char-wrap" id="charWrap">
-                    <img id="img-base" src="original.png" alt="character">
-                    <img id="img-eyes" src="eyes.png" alt="">
-                    <img id="img-expr" src="" alt="">
-                </div>
-            </div>
-
         </div>
     </main>
 
+    <div class="dream-jar-wrapper">
+        <div class="dream-jar" id="jarStars"></div>
+        <span>Dream Jar</span>
+    </div>
+
     <script>
         const IMGS = {
-            blink: 'blink.png',
-            closed: 'closed.png',
-            peek: 'peek.png',
-            mad: 'mad.png',
-            surprised: 'surprised.png',
-            sleepy: 'sleepy.png',
+            blink: '../assest/blink-assets.png',
+            cry: '../assest/cry-assets-follow.png',
+            shock: '../assest/shock-assests.png',
+            sleepy: '../assest/sleepy-assets.png',
+            wink: '../assest/wink-assests.png',
+            smile: '../assest/smile.png'
         };
 
         const imgEyes = document.getElementById('img-eyes');
         const imgExpr = document.getElementById('img-expr');
         const charWrap = document.getElementById('charWrap');
-        const passInput = document.getElementById('passwordInput');
-        const loginBtn = document.getElementById('loginBtn');
-        const errorMsg = document.getElementById('errorMsg');
-        const formCol = document.querySelector('.form-col');
+        
+        const wishInput = document.getElementById('wishInput');
+        const luckBtn = document.getElementById('luckBtn');
+        const clover = document.getElementById('clover');
+        const wishesCountDisplay = document.getElementById('wishesCount');
+        const jarStars = document.getElementById('jarStars');
+        const themeToggle = document.getElementById('themeToggle');
+        const audioToggle = document.getElementById('audioToggle');
+        const pianoAudio = document.getElementById('pianoAudio');
+        const html = document.documentElement;
 
         let state = 'default';
         let blinkTimer = null;
         let idleTimer = null;
         let resetTimer = null;
+        let isNight = false;
+        let isPlayingAudio = false;
+        let wishesSent = 0;
+        let isBlinkClosed = false;
 
         function setState(s) {
-
             if (resetTimer && s !== 'blink') {
                 clearTimeout(resetTimer);
                 resetTimer = null;
@@ -545,15 +422,13 @@
             if (s === 'default') {
                 imgEyes.style.display = '';
                 imgExpr.classList.remove('visible');
+                isBlinkClosed = false;
                 scheduleNextBlink();
                 startIdleTimer();
-
             } else {
-
                 if (s !== 'blink') {
                     imgEyes.style.display = 'none';
                 }
-
                 if (IMGS[s]) {
                     imgExpr.src = IMGS[s];
                     imgExpr.classList.add('visible');
@@ -563,219 +438,174 @@
 
         function scheduleNextBlink() {
             clearTimeout(blinkTimer);
-
-            blinkTimer = setTimeout(doBlink, 3000 + Math.random() * 3000);
+            blinkTimer = setTimeout(doBlink, 1000);
         }
 
-        async function doBlink() {
-
+        function doBlink() {
             if (state !== 'default') {
                 scheduleNextBlink();
                 return;
             }
-
-            await flashBlink();
-
-            if (Math.random() < 0.25) {
-                await pause(60);
-                await flashBlink();
-            }
-
-            if (state === 'default') scheduleNextBlink();
-        }
-
-        function flashBlink() {
-
-            return new Promise(res => {
-
+            
+            isBlinkClosed = !isBlinkClosed;
+            
+            if (isBlinkClosed) {
                 imgEyes.style.display = 'none';
                 imgExpr.src = IMGS.blink;
                 imgExpr.classList.add('visible');
-
-                setTimeout(() => {
-                    imgExpr.classList.remove('visible');
-
-                    if (state === 'default') {
-                        imgEyes.style.display = '';
-                    }
-
-                    res();
-                }, 140);
-
-            });
-        }
-
-        function pause(ms) {
-            return new Promise(r => setTimeout(r, ms));
+            } else {
+                imgExpr.classList.remove('visible');
+                imgEyes.style.display = '';
+            }
+            
+            scheduleNextBlink();
         }
 
         function startIdleTimer() {
-
             clearTimeout(idleTimer);
-
+            // 3 minutes idle = 180000ms
             idleTimer = setTimeout(() => {
-
                 if (state === 'default') {
                     setState('sleepy');
                 }
-
-            }, 10000);
+            }, 180000);
         }
 
         function resetIdle() {
-
             if (state === 'sleepy') {
                 setState('default');
             }
-
             startIdleTimer();
         }
 
         document.addEventListener('mousemove', resetIdle);
         document.addEventListener('keydown', resetIdle);
 
+        // Eyes Follow Cursor
         document.addEventListener('mousemove', (e) => {
-
             if (state !== 'default') return;
-
             const rect = charWrap.getBoundingClientRect();
-
             const cx = rect.left + rect.width * 0.5;
             const cy = rect.top + rect.height * 0.42;
-
             const dx = e.clientX - cx;
             const dy = e.clientY - cy;
-
             const angle = Math.atan2(dy, dx);
-
             const dist = Math.min(Math.sqrt(dx * dx + dy * dy), 220);
-
             const f = dist / 220;
-
             const rawX = Math.cos(angle) * f * 14;
-
             const clampedX = rawX < 0 ? Math.max(rawX, -5) : rawX;
-
-            imgEyes.style.transform =
-                `translate(${clampedX.toFixed(1)}px,${(Math.sin(angle) * f * 10).toFixed(1)}px)`;
-
+            
+            imgEyes.style.transform = `translate(${clampedX.toFixed(1)}px,${(Math.sin(angle) * f * 10).toFixed(1)}px)`;
         });
 
-        passInput.addEventListener('focus', () => {
+        // Typing / Clover Grow / Shock Logic
+        wishInput.addEventListener('input', () => {
+            const text = wishInput.value;
+            const cloverScale = Math.min(2.5, 1 + text.length * 0.03);
+            clover.style.transform = `scale(${cloverScale})`;
 
-            if (state === 'default' || state === 'sleepy') {
-                setState('closed');
-            }
-
-        });
-
-        passInput.addEventListener('blur', () => {
-
-            if (state === 'closed' || state === 'peek') {
+            if (text.length > 50 && state !== 'shock') {
+                setState('shock');
+            } else if (text.length <= 50 && state === 'shock') {
                 setState('default');
             }
-
+            resetIdle();
         });
 
-        passInput.addEventListener('keyup', (e) => {
-
-            const caps = e.getModifierState('CapsLock');
-
-            if (caps && (state === 'closed' || state === 'default')) {
-
-                setState('peek');
-
-            } else if (!caps && state === 'peek') {
-
-                setState(document.activeElement === passInput ? 'closed' : 'default');
-
+        // Backspace -> Cry
+        wishInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace') {
+                setState('cry');
+                resetTimer = setTimeout(() => {
+                    setState('default');
+                }, 5000);
             }
-
         });
 
-        loginBtn.addEventListener('click', () => {
+        // Submit Wish -> Wink -> Fly -> Dream Jar
+        luckBtn.addEventListener('click', () => {
+            if (!wishInput.value.trim()) return;
 
-            const pass = passInput.value;
+            // Character winks
+            setState('wink');
+            resetTimer = setTimeout(() => {
+                setState('default');
+            }, 3000);
 
-            if (!pass || pass === 'wrong') {
+            // Flying wish animation
+            const flyingStar = document.createElement('div');
+            flyingStar.className = 'flying-wish';
+            flyingStar.innerHTML = '⭐';
+            const rect = luckBtn.getBoundingClientRect();
+            flyingStar.style.left = (rect.left + rect.width / 2) + 'px';
+            flyingStar.style.top = rect.top + 'px';
+            document.body.appendChild(flyingStar);
 
-                setState('mad');
+            setTimeout(() => flyingStar.remove(), 2500);
 
-                errorMsg.classList.add('visible');
+            // Update Constellation/Sent counter
+            wishesSent++;
+            wishesCountDisplay.innerText = `Wishes Sent: ${wishesSent}`;
 
-                formCol.classList.remove('shake');
+            // Add star to jar
+            const jarStar = document.createElement('div');
+            jarStar.className = 'jar-star';
+            jarStars.appendChild(jarStar);
 
-                void formCol.offsetWidth;
+            // Reset form
+            wishInput.value = '';
+            clover.style.transform = `scale(1)`;
+        });
 
-                formCol.classList.add('shake');
-
-                resetTimer = setTimeout(() => setState('default'), 2500);
-
+        // Audio Toggle
+        audioToggle.addEventListener('click', () => {
+            if (isPlayingAudio) {
+                pianoAudio.pause();
+                audioToggle.innerText = '🎵 Play Piano';
             } else {
-
-                setState('surprised');
-
-                errorMsg.classList.remove('visible');
-
-                resetTimer = setTimeout(() => setState('default'), 1500);
-
+                pianoAudio.play().catch(e => console.log('Audio play failed', e));
+                audioToggle.innerText = '🔇 Pause Piano';
             }
-
+            isPlayingAudio = !isPlayingAudio;
         });
 
-        document.getElementById('tabLogin').addEventListener('click', () => {
+        // Theme Toggle (Night/Day)
+        themeToggle.addEventListener('click', () => {
+            isNight = !isNight;
+            html.setAttribute('data-theme', isNight ? 'dark' : 'light');
+            themeToggle.innerText = isNight ? '☀️ Bright Mode' : '🌙 Night Mode';
 
-            document.getElementById('tabLogin').classList.add('active');
-
-            document.getElementById('tabSignup').classList.remove('active');
-
+            if (isNight) {
+                setState('sleepy');
+                resetTimer = setTimeout(() => setState('default'), 4000);
+            } else {
+                setState('default');
+            }
         });
 
-        document.getElementById('tabSignup').addEventListener('click', () => {
-
-            document.getElementById('tabSignup').classList.add('active');
-
-            document.getElementById('tabLogin').classList.remove('active');
-
+        // Sparkles Follow Cursor
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.15) { 
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 1000);
+            }
         });
 
-        const html = document.documentElement;
-        const sunIcon = document.getElementById('sunIcon');
-        const moonIcon = document.getElementById('moonIcon');
-
-        function applyTheme(dark) {
-
-            html.setAttribute('data-theme', dark ? 'dark' : 'light');
-
-            sunIcon.classList.toggle('active', !dark);
-
-            moonIcon.classList.toggle('active', dark);
-
+        // Rain turning into stars
+        function createRain() {
+            const rain = document.createElement('div');
+            rain.className = 'raindrop';
+            rain.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(rain);
+            setTimeout(() => rain.remove(), 2500);
         }
-
-        applyTheme(localStorage.getItem('theme') === 'dark');
-
-        document.getElementById('themeToggle').addEventListener('click', () => {
-
-            const isDark = html.getAttribute('data-theme') === 'dark';
-
-            applyTheme(!isDark);
-
-            localStorage.setItem('theme', !isDark ? 'dark' : 'light');
-
-        });
-
-        charWrap.addEventListener('click', () => {
-
-            setState('mad');
-
-            resetTimer = setTimeout(() => setState('default'), 700);
-
-        });
+        setInterval(createRain, 1500);
 
         setState('default');
     </script>
-
 </body>
-
 </html>
