@@ -6,7 +6,7 @@
     <title>Wish Form - Lucky Clover & Shooting Star</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <style>
         *, *::before, *::after {
@@ -19,12 +19,16 @@
             --bg-glass: rgba(255, 255, 255, 0.2);
             --border-glass: rgba(255, 255, 255, 0.4);
             --text-color: #2C2418;
+            --toggle-track: rgba(255, 255, 255, 0.4);
+            --toggle-thumb: #FFD700;
         }
 
         [data-theme="dark"] {
             --bg-glass: rgba(0, 0, 0, 0.4);
             --border-glass: rgba(255, 255, 255, 0.2);
             --text-color: #F0E8D5;
+            --toggle-track: rgba(0, 0, 0, 0.6);
+            --toggle-thumb: #444;
         }
 
         body {
@@ -32,7 +36,7 @@
             min-height: 100vh;
             overflow: hidden;
             background-color: #87CEEB;
-            background-image: url('../assest/bright-mode.png');
+            background-image: url('../assest/sun-assets.png');
             background-size: cover;
             background-position: center;
             transition: background-image 1s ease-in-out;
@@ -40,7 +44,7 @@
         }
 
         [data-theme="dark"] body {
-            background-image: url('../assest/night%20mode.png');
+            background-image: url('../assest/nightsky-assests.jpg');
             background-color: #0b1021;
         }
 
@@ -60,7 +64,7 @@
             100% { transform: translateX(100vw); }
         }
 
-        /* Sparkles */
+        /* Sparkles / Star Dust */
         .sparkle {
             position: absolute;
             width: 8px;
@@ -125,7 +129,54 @@
             gap: 10px;
         }
 
-        .theme-toggle, .audio-toggle {
+        /* Pixel Clock */
+        .pixel-clock {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            color: #fff;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.3);
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Pill Capsule Theme Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            background: var(--toggle-track);
+            border-radius: 20px;
+            padding: 3px;
+            cursor: pointer;
+            gap: 2px;
+            transition: background 0.3s;
+            border: none;
+            outline: none;
+        }
+
+        .theme-toggle .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .theme-toggle .icon img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+        
+        .theme-toggle .icon.active {
+            background: var(--toggle-thumb);
+        }
+
+        .audio-toggle {
             background: var(--bg-glass);
             backdrop-filter: blur(5px);
             border: 1px solid var(--border-glass);
@@ -141,13 +192,14 @@
             font-family: inherit;
         }
 
-        .theme-toggle:hover, .audio-toggle:hover {
+        .audio-toggle:hover {
             background: rgba(255,255,255,0.4);
         }
 
         .controls {
             display: flex;
             gap: 15px;
+            align-items: center;
         }
 
         /* Main Content */
@@ -260,64 +312,6 @@
         #img-expr { z-index: 3; opacity: 0; transition: opacity 0.2s; }
         #img-expr.visible { opacity: 1; }
 
-        /* Dream Jar */
-        .dream-jar-wrapper {
-            position: absolute;
-            bottom: 30px;
-            left: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            color: #fff;
-            font-weight: bold;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .dream-jar {
-            width: 100px;
-            height: 130px;
-            background: rgba(255,255,255,0.15);
-            border: 3px solid rgba(255,255,255,0.4);
-            border-radius: 5px 5px 20px 20px;
-            backdrop-filter: blur(5px);
-            z-index: 15;
-            display: flex;
-            align-content: flex-end;
-            justify-content: center;
-            flex-wrap: wrap-reverse;
-            padding: 10px;
-            gap: 3px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: inset 0 -20px 30px rgba(255,255,255,0.2), 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .dream-jar::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: 10px;
-            width: 80px;
-            height: 25px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50%;
-        }
-
-        .jar-star {
-            width: 12px;
-            height: 12px;
-            background: #FFD700;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            box-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
-            animation: pulse-star 2s infinite alternate;
-        }
-
-        @keyframes pulse-star {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.1); opacity: 1; }
-        }
-
         /* Flying Wish */
         .flying-wish {
             position: absolute;
@@ -330,7 +324,7 @@
 
         @keyframes fly-to-sky {
             0% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
-            100% { opacity: 0; transform: translateY(-80vh) translateX(100px) scale(0.3) rotate(180deg); }
+            100% { opacity: 0; transform: translateY(-100vh) translateX(150px) scale(0.3) rotate(360deg); }
         }
 
     </style>
@@ -345,9 +339,19 @@
         <div class="constellation-board">
             ✨ <span id="wishesCount">Wishes Sent: 0</span>
         </div>
+        
+        <div id="pixelClock" class="pixel-clock">00:00</div>
+
         <div class="controls">
             <button class="audio-toggle" id="audioToggle">🎵 Play Piano</button>
-            <button class="theme-toggle" id="themeToggle">🌙 Night Mode</button>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <div class="icon active" id="sunIcon">
+                    <img src="../assest/sun-assets.png" alt="Day">
+                </div>
+                <div class="icon" id="moonIcon">
+                    <img src="../assest/star-assets.png" alt="Night">
+                </div>
+            </button>
         </div>
     </header>
 
@@ -367,16 +371,11 @@
         <div class="char-col">
             <div class="char-wrap" id="charWrap">
                 <img id="img-base" src="../assest/original-assests.png" alt="character">
-                <img id="img-eyes" src="../assest/eyes-assests.png" alt="eyes">
+                <img id="img-eyes" src="../assest/eye-assets.png" alt="eyes">
                 <img id="img-expr" src="" alt="expression">
             </div>
         </div>
     </main>
-
-    <div class="dream-jar-wrapper">
-        <div class="dream-jar" id="jarStars"></div>
-        <span>Dream Jar</span>
-    </div>
 
     <script>
         const IMGS = {
@@ -396,7 +395,6 @@
         const luckBtn = document.getElementById('luckBtn');
         const clover = document.getElementById('clover');
         const wishesCountDisplay = document.getElementById('wishesCount');
-        const jarStars = document.getElementById('jarStars');
         const themeToggle = document.getElementById('themeToggle');
         const audioToggle = document.getElementById('audioToggle');
         const pianoAudio = document.getElementById('pianoAudio');
@@ -410,6 +408,19 @@
         let isPlayingAudio = false;
         let wishesSent = 0;
         let isBlinkClosed = false;
+
+        // Pixel Clock Logic
+        function updateClock() {
+            const now = new Date();
+            let h = now.getHours();
+            let m = now.getMinutes();
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12 || 12;
+            m = m < 10 ? '0' + m : m;
+            document.getElementById('pixelClock').innerText = `${h}:${m} ${ampm}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
 
         function setState(s) {
             if (resetTimer && s !== 'blink') {
@@ -438,7 +449,7 @@
 
         function scheduleNextBlink() {
             clearTimeout(blinkTimer);
-            blinkTimer = setTimeout(doBlink, 1000);
+            blinkTimer = setTimeout(doBlink, 1000); // 1 sec interval
         }
 
         function doBlink() {
@@ -512,9 +523,12 @@
             resetIdle();
         });
 
-        // Backspace -> Cry
+        // Backspace -> Cry and Clear
         wishInput.addEventListener('keydown', (e) => {
             if (e.key === 'Backspace') {
+                wishInput.value = ''; // make form full blank
+                clover.style.transform = `scale(1)`; // reset clover
+                
                 setState('cry');
                 resetTimer = setTimeout(() => {
                     setState('default');
@@ -522,7 +536,7 @@
             }
         });
 
-        // Submit Wish -> Wink -> Fly -> Dream Jar
+        // Submit Wish -> Wink -> Fly into sky
         luckBtn.addEventListener('click', () => {
             if (!wishInput.value.trim()) return;
 
@@ -547,11 +561,6 @@
             wishesSent++;
             wishesCountDisplay.innerText = `Wishes Sent: ${wishesSent}`;
 
-            // Add star to jar
-            const jarStar = document.createElement('div');
-            jarStar.className = 'jar-star';
-            jarStars.appendChild(jarStar);
-
             // Reset form
             wishInput.value = '';
             clover.style.transform = `scale(1)`;
@@ -569,11 +578,13 @@
             isPlayingAudio = !isPlayingAudio;
         });
 
-        // Theme Toggle (Night/Day)
+        // Theme Toggle (Night/Day) Capsule Pill
         themeToggle.addEventListener('click', () => {
             isNight = !isNight;
             html.setAttribute('data-theme', isNight ? 'dark' : 'light');
-            themeToggle.innerText = isNight ? '☀️ Bright Mode' : '🌙 Night Mode';
+            
+            document.getElementById('sunIcon').classList.toggle('active', !isNight);
+            document.getElementById('moonIcon').classList.toggle('active', isNight);
 
             if (isNight) {
                 setState('sleepy');
