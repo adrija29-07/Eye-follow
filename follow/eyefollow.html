@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mochi — Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-page: #f3dfa7;
+            --bg-input: #FFFFFF;
+            --border-input: #4A8C72;
+            --text-primary: #2C2418;
+            --text-secondary: #7A6A56;
+            --text-label: #3A6B52;
+            --accent-coral: #c0694c;
+            --logo-1: #4A8C72;
+            --logo-2: #D85A30;
+            --logo-3: #4A8C72;
+            --logo-4: #E8A838;
+            --btn-bg: #3A6B52;
+            --btn-text: #FFFFFF;
+            --tab-active-bg: #3A6B52;
+            --tab-active-txt: #FFFFFF;
+            --tab-idle-txt: #3A6B52;
+            --tab-border: #3A6B52;
+            --toggle-track: #d3c090;
+            --toggle-thumb: #3A6B52;
+            --error-bg: #FDECEA;
+            --header-bg: #ecd096;
+            --input-shadow: rgba(74, 140, 114, 0.15);
+        }
+
+        [data-theme="dark"] {
+            --bg-page: #36312a;
+            --bg-input: #2A2318;
+            --border-input: #5DCAA5;
+            --text-primary: #F0E8D5;
+            --text-secondary: #A89880;
+            --text-label: #5DCAA5;
+            --accent-coral: #F0997B;
+            --logo-1: #5DCAA5;
+            --logo-2: #F0997B;
+            --logo-3: #5DCAA5;
+            --logo-4: #FAC775;
+            --btn-bg: #5DCAA5;
+            --btn-text: #1C1812;
+            --tab-active-bg: #5DCAA5;
+            --tab-active-txt: #1C1812;
+            --tab-idle-txt: #5DCAA5;
+            --tab-border: #5DCAA5;
+            --toggle-track: #4c4436;
+            --toggle-thumb: #5DCAA5;
+            --error-bg: #2A1A14;
+            --header-bg: #24221e;
+            --input-shadow: rgba(93, 202, 165, 0.1);
+        }
+
+        body {
+            background: var(--bg-page);
+            color: var(--text-primary);
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--header-bg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            height: 60px;
+            transition: background 0.9s;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .hamburger img {
+            height: 28px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo img {
+            height: 36px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            background: var(--toggle-track);
+            border-radius: 20px;
+            padding: 3px;
+            cursor: pointer;
+            gap: 2px;
+            transition: background 0.3s;
+            border: none;
+            outline: none;
+        }
+
+        .theme-toggle .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .theme-toggle .icon img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .theme-toggle .icon.active {
+            background: var(--toggle-thumb);
+        }
+
+        .tabs-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 18px;
+        }
+
+        .tabs {
+            display: inline-flex;
+            align-items: center;
+            background: var(--toggle-track);
+            border-radius: 20px;
+            padding: 3px;
+            gap: 2px;
+            transition: background 0.3s;
+            border: none;
+        }
+
+        .tab {
+            height: 28px;
+            padding: 0 18px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Nunito', sans-serif;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tab.active {
+            background: var(--toggle-thumb);
+            color: var(--tab-active-txt);
+            border-radius: 16px;
+        }
+
+        main {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px 24px;
+        }
+
+        .page-content {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 960px;
+        }
+
+        .slogan {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .slogan img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .form-col {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Nunito', sans-serif;
+            letter-spacing: 0.8px;
+            color: var(--text-label);
+            margin-bottom: 4px;
+            margin-left: 14px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 13px 20px;
+            border: 1.5px solid var(--border-input);
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg-input);
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px var(--input-shadow);
+        }
+
+        .form-input:focus {
+            box-shadow: 0 0 0 3px var(--input-shadow), 0 2px 8px var(--input-shadow);
+            border-color: var(--text-label);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .forgot {
+            display: block;
+            text-align: right;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Nunito', sans-serif;
+            color: var(--accent-coral);
+            text-decoration: none;
+            margin-top: 6px;
+            transition: opacity 0.2s;
+        }
+
+        .forgot:hover {
+            opacity: 0.75;
+        }
+
+        .btn-login {
+            width: 100%;
+            margin-top: 28px;
+            padding: 14px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            font-family: 'Nunito', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.2s;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-login:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+        .btn-login:active {
+            transform: scale(0.98);
+        }
+
+        .error-msg {
+            display: none;
+            margin-top: 14px;
+            padding: 6px 16px;
+            color: var(--accent-coral);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .error-msg.visible {
+            display: block;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            15% {
+                transform: translateX(-8px);
+            }
+
+            30% {
+                transform: translateX(8px);
+            }
+
+            45% {
+                transform: translateX(-6px);
+            }
+
+            60% {
+                transform: translateX(6px);
+            }
+
+            75% {
+                transform: translateX(-3px);
+            }
+
+            90% {
+                transform: translateX(3px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.5s ease;
+        }
+
+        .char-col {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .char-wrap {
+            position: relative;
+            width: 520px;
+            height: 610px;
+            user-select: none;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .char-wrap img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        #img-base {
+            z-index: 1;
+        }
+
+        #img-eyes {
+            z-index: 2;
+            transition: transform 0.05s linear;
+        }
+
+        #img-expr {
+            z-index: 3;
+            opacity: 0;
+        }
+
+        #img-expr.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 680px) {
+            .page-content {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .char-col {
+                order: -1;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .char-wrap {
+                width: 220px;
+                height: 272px;
+            }
+
+            .form-col {
+                max-width: 100%;
+            }
+
+            header {
+                padding: 0 16px;
+            }
+
+            .tab {
+                padding: 6px 14px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-left">
+            <span class="hamburger">
+                <img src="menu.png" alt="Menu">
+            </span>
+
+            <div class="logo">
+                <img src="Logo.png" alt="Mochi">
+            </div>
+        </div>
+
+        <div class="header-right">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="icon active" id="sunIcon">
+                    <img src="SunToggle.png" alt="Light">
+                </span>
+
+                <span class="icon" id="moonIcon">
+                    <img src="MoonToggle.png" alt="Dark">
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-content">
+
+            <div class="form-col">
+
+                <div class="slogan">
+                    <img src="slogan.png" alt="Slogan">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="emailInput">Email</label>
+
+                    <input class="form-input" id="emailInput" type="email" placeholder="Sarah.example@gmail.com"
+                        autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="passwordInput">Password</label>
+
+                    <input class="form-input" id="passwordInput" type="password" placeholder="••••••••••">
+
+                    <a class="forgot" href="#">forgot password?</a>
+                </div>
+
+                <button class="btn-login" id="loginBtn">Login</button>
+
+                <div class="error-msg" id="errorMsg">
+                    Incorrect password. Please try again.
+                </div>
+
+                <div class="tabs-wrap">
+                    <div class="tabs">
+                        <button class="tab active" id="tabLogin">Login</button>
+                        <button class="tab" id="tabSignup">Signup</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="char-col">
+                <div class="char-wrap" id="charWrap">
+                    <img id="img-base" src="original.png" alt="character">
+                    <img id="img-eyes" src="eyes.png" alt="">
+                    <img id="img-expr" src="" alt="">
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const IMGS = {
+            blink: 'blink.png',
+            closed: 'closed.png',
+            peek: 'peek.png',
+            mad: 'mad.png',
+            surprised: 'surprised.png',
+            sleepy: 'sleepy.png',
+        };
+
+        const imgEyes = document.getElementById('img-eyes');
+        const imgExpr = document.getElementById('img-expr');
+        const charWrap = document.getElementById('charWrap');
+        const passInput = document.getElementById('passwordInput');
+        const loginBtn = document.getElementById('loginBtn');
+        const errorMsg = document.getElementById('errorMsg');
+        const formCol = document.querySelector('.form-col');
+
+        let state = 'default';
+        let blinkTimer = null;
+        let idleTimer = null;
+        let resetTimer = null;
+
+        function setState(s) {
+
+            if (resetTimer && s !== 'blink') {
+                clearTimeout(resetTimer);
+                resetTimer = null;
+            }
+
+            state = s;
+
+            if (s === 'default') {
+                imgEyes.style.display = '';
+                imgExpr.classList.remove('visible');
+                scheduleNextBlink();
+                startIdleTimer();
+
+            } else {
+
+                if (s !== 'blink') {
+                    imgEyes.style.display = 'none';
+                }
+
+                if (IMGS[s]) {
+                    imgExpr.src = IMGS[s];
+                    imgExpr.classList.add('visible');
+                }
+            }
+        }
+
+        function scheduleNextBlink() {
+            clearTimeout(blinkTimer);
+
+            blinkTimer = setTimeout(doBlink, 3000 + Math.random() * 3000);
+        }
+
+        async function doBlink() {
+
+            if (state !== 'default') {
+                scheduleNextBlink();
+                return;
+            }
+
+            await flashBlink();
+
+            if (Math.random() < 0.25) {
+                await pause(60);
+                await flashBlink();
+            }
+
+            if (state === 'default') scheduleNextBlink();
+        }
+
+        function flashBlink() {
+
+            return new Promise(res => {
+
+                imgEyes.style.display = 'none';
+                imgExpr.src = IMGS.blink;
+                imgExpr.classList.add('visible');
+
+                setTimeout(() => {
+                    imgExpr.classList.remove('visible');
+
+                    if (state === 'default') {
+                        imgEyes.style.display = '';
+                    }
+
+                    res();
+                }, 140);
+
+            });
+        }
+
+        function pause(ms) {
+            return new Promise(r => setTimeout(r, ms));
+        }
+
+        function startIdleTimer() {
+
+            clearTimeout(idleTimer);
+
+            idleTimer = setTimeout(() => {
+
+                if (state === 'default') {
+                    setState('sleepy');
+                }
+
+            }, 10000);
+        }
+
+        function resetIdle() {
+
+            if (state === 'sleepy') {
+                setState('default');
+            }
+
+            startIdleTimer();
+        }
+
+        document.addEventListener('mousemove', resetIdle);
+        document.addEventListener('keydown', resetIdle);
+
+        document.addEventListener('mousemove', (e) => {
+
+            if (state !== 'default') return;
+
+            const rect = charWrap.getBoundingClientRect();
+
+            const cx = rect.left + rect.width * 0.5;
+            const cy = rect.top + rect.height * 0.42;
+
+            const dx = e.clientX - cx;
+            const dy = e.clientY - cy;
+
+            const angle = Math.atan2(dy, dx);
+
+            const dist = Math.min(Math.sqrt(dx * dx + dy * dy), 220);
+
+            const f = dist / 220;
+
+            const rawX = Math.cos(angle) * f * 14;
+
+            const clampedX = rawX < 0 ? Math.max(rawX, -5) : rawX;
+
+            imgEyes.style.transform =
+                `translate(${clampedX.toFixed(1)}px,${(Math.sin(angle) * f * 10).toFixed(1)}px)`;
+
+        });
+
+        passInput.addEventListener('focus', () => {
+
+            if (state === 'default' || state === 'sleepy') {
+                setState('closed');
+            }
+
+        });
+
+        passInput.addEventListener('blur', () => {
+
+            if (state === 'closed' || state === 'peek') {
+                setState('default');
+            }
+
+        });
+
+        passInput.addEventListener('keyup', (e) => {
+
+            const caps = e.getModifierState('CapsLock');
+
+            if (caps && (state === 'closed' || state === 'default')) {
+
+                setState('peek');
+
+            } else if (!caps && state === 'peek') {
+
+                setState(document.activeElement === passInput ? 'closed' : 'default');
+
+            }
+
+        });
+
+        loginBtn.addEventListener('click', () => {
+
+            const pass = passInput.value;
+
+            if (!pass || pass === 'wrong') {
+
+                setState('mad');
+
+                errorMsg.classList.add('visible');
+
+                formCol.classList.remove('shake');
+
+                void formCol.offsetWidth;
+
+                formCol.classList.add('shake');
+
+                resetTimer = setTimeout(() => setState('default'), 2500);
+
+            } else {
+
+                setState('surprised');
+
+                errorMsg.classList.remove('visible');
+
+                resetTimer = setTimeout(() => setState('default'), 1500);
+
+            }
+
+        });
+
+        document.getElementById('tabLogin').addEventListener('click', () => {
+
+            document.getElementById('tabLogin').classList.add('active');
+
+            document.getElementById('tabSignup').classList.remove('active');
+
+        });
+
+        document.getElementById('tabSignup').addEventListener('click', () => {
+
+            document.getElementById('tabSignup').classList.add('active');
+
+            document.getElementById('tabLogin').classList.remove('active');
+
+        });
+
+        const html = document.documentElement;
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+
+        function applyTheme(dark) {
+
+            html.setAttribute('data-theme', dark ? 'dark' : 'light');
+
+            sunIcon.classList.toggle('active', !dark);
+
+            moonIcon.classList.toggle('active', dark);
+
+        }
+
+        applyTheme(localStorage.getItem('theme') === 'dark');
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+
+            const isDark = html.getAttribute('data-theme') === 'dark';
+
+            applyTheme(!isDark);
+
+            localStorage.setItem('theme', !isDark ? 'dark' : 'light');
+
+        });
+
+        charWrap.addEventListener('click', () => {
+
+            setState('mad');
+
+            resetTimer = setTimeout(() => setState('default'), 700);
+
+        });
+
+        setState('default');
+    </script>
+
+</body>
+
+</html>
