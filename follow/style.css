@@ -50,6 +50,11 @@ body {
     z-index: 1;
     opacity: 0.8;
     animation: float-cloud linear infinite;
+    display: none; /* Removed from bright view */
+}
+
+[data-theme="dark"] .cloud {
+    display: block;
 }
 
 .cloud-1 {
