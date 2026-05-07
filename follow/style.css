@@ -47,7 +47,7 @@ body {
 /* Clouds */
 .cloud {
     position: absolute;
-    z-index: 0;
+    z-index: 1;
     opacity: 0.8;
     animation: float-cloud linear infinite;
 }
@@ -243,8 +243,8 @@ header {
 /* Main Content */
 main {
     position: relative;
-    z-index: 10;
     display: flex;
+    z-index: 1;
     justify-content: center;
     align-items: center;
     height: 100vh;
