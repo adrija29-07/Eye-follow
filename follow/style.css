@@ -50,7 +50,8 @@ body {
     z-index: 1;
     opacity: 0.8;
     animation: float-cloud linear infinite;
-    display: none; /* Removed from bright view */
+    display: none;
+    /* Removed from bright view */
 }
 
 [data-theme="dark"] .cloud {
@@ -197,7 +198,7 @@ header {
     transition: background 0.3s;
     border: 2px solid var(--border-glass);
     outline: none;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .theme-toggle .icon {
@@ -404,7 +405,8 @@ h2 {
     top: -50px;
     left: 50%;
     transform: translateX(-50%) translateY(20px);
-    background: rgba(255, 255, 255, 0.95); /* Solid white background for visibility */
+    background: rgba(255, 255, 255, 0.95);
+    /* Solid white background for visibility */
     border: 2px solid #fff;
     padding: 15px 25px;
     border-radius: 25px;
@@ -451,16 +453,23 @@ h2 {
         flex-wrap: wrap;
         justify-content: center;
         gap: 5px;
-        background: rgba(0,0,0,0.1);
+        background: rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(5px);
         width: 100%;
     }
 
-    .constellation-board { font-size: 14px; }
-    .pixel-clock { font-size: 9px; padding: 5px 8px; }
+    .constellation-board {
+        font-size: 14px;
+    }
+
+    .pixel-clock {
+        font-size: 9px;
+        padding: 5px 8px;
+    }
 
     main {
-        flex-direction: row; /* Side by side as requested */
+        flex-direction: row;
+        /* Side by side as requested */
         height: 100vh;
         padding: 60px 10px 0;
         gap: 10px;
@@ -469,19 +478,37 @@ h2 {
     }
 
     .wish-container {
-        width: 180px; /* Much smaller to fit side-by-side */
+        width: 180px;
+        /* Much smaller to fit side-by-side */
         padding: 15px;
         backdrop-filter: blur(6px);
         border-radius: 15px;
     }
 
-    .wish-container h2 { font-size: 16px; margin-bottom: 10px; }
-    .clover-container { font-size: 30px; margin-bottom: 10px; }
-    .wish-input { height: 80px; font-size: 12px; margin-bottom: 10px; }
-    .luck-btn { font-size: 12px; padding: 10px; }
+    .wish-container h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .clover-container {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .wish-input {
+        height: 80px;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .luck-btn {
+        font-size: 12px;
+        padding: 10px;
+    }
 
     .char-col {
-        width: 140px; /* Small character container */
+        width: 140px;
+        /* Small character container */
         display: flex;
         justify-content: center;
     }
@@ -492,9 +519,17 @@ h2 {
     }
 
     .eyes-container {
-        transform: scale(0.45); /* Smaller eyes for mobile */
+        transform: scale(0.55);
+        /* Smaller eyes for mobile */
     }
 
-    .theme-toggle .icon { width: 30px; height: 30px; }
-    .theme-toggle .icon img { width: 18px; height: 18px; }
+    .theme-toggle .icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .theme-toggle .icon img {
+        width: 18px;
+        height: 18px;
+    }
 }
