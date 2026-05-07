@@ -16,8 +16,6 @@ const luckBtn = document.getElementById('luckBtn');
 const clover = document.getElementById('clover');
 const wishesCountDisplay = document.getElementById('wishesCount');
 const themeToggle = document.getElementById('themeToggle');
-const audioToggle = document.getElementById('audioToggle');
-const pianoAudio = document.getElementById('pianoAudio');
 const html = document.documentElement;
 
 let state = 'default';
@@ -241,7 +239,9 @@ themeToggle.addEventListener('click', () => {
 
     if (isNight) {
         setState('sleepy');
-        // Do not reset timer, let it stay sleepy until interaction
+        resetTimer = setTimeout(() => {
+            setState('default');
+        }, 3000);
     } else {
         setState('default');
     }
