@@ -40,3 +40,18 @@ JavaScript
 🌐 Add your deployed Vercel link here:
 https://eye-follow-d478.vercel.app/ 
 
+## 📸 Preview
+
+Add screenshots of both desktop and mobile versions here.
+Example:
+## NIGHT_MODE DESKTOP VERSION:
+<img width="1913" height="853" alt="image" src="https://github.com/user-attachments/assets/c2ec6870-b94a-4185-970c-1d1e2dac1bcd" />
+## BRIGHT_MODE DESKTOP VERSION:
+<img width="1914" height="884" alt="image" src="https://github.com/user-attachments/assets/66757f01-38fb-4c92-90ea-85417e81e85c" />
+
+##  NIGHT_MODE Mobile View
+<img width="720" height="1300" alt="image" src="https://github.com/user-attachments/assets/915f5f59-a98a-4d7e-ab9a-5d8a2d1505a2" />
+## BRIGHT_MODE Mobile View
+<img width="720" height="1314" alt="image" src="https://github.com/user-attachments/assets/ec4fb996-73da-4019-863c-f5b79891aefb" />
+
+
