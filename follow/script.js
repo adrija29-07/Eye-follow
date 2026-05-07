@@ -269,4 +269,15 @@ function createRain() {
 }
 setInterval(createRain, 1500);
 
+// Background Shooting Stars
+function createBackgroundShootingStar() {
+    const star = document.createElement('div');
+    star.className = 'shooting-star';
+    star.style.left = Math.random() * window.innerWidth + 'px';
+    star.style.top = Math.random() * (window.innerHeight * 0.5) + 'px'; 
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 3000);
+}
+setInterval(createBackgroundShootingStar, 2000);
+
 setState('default');

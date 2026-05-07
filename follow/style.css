@@ -33,6 +33,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed; /* Fixes blue bottom on mobile */
 
     transition: background-image 1s ease-in-out;
     color: var(--text-color);
@@ -42,6 +43,7 @@ body {
 [data-theme="dark"] body {
     background-image: url('assest/nightbg.jpg');
     background-color: #0b1021;
+    background-attachment: fixed;
 }
 
 /* Clouds */
@@ -402,7 +404,7 @@ h2 {
 /* Message Bubble */
 .message-bubble {
     position: absolute;
-    top: -50px;
+    top: 40px; /* Moved down as requested */
     left: 50%;
     transform: translateX(-50%) translateY(20px);
     background: rgba(255, 255, 255, 0.95);
@@ -532,4 +534,39 @@ h2 {
         width: 18px;
         height: 18px;
     }
+
+    /* Prevent blue gap on mobile */
+    body {
+        overflow: auto;
+        background-attachment: fixed;
+    }
 }
+
+/* Background Shooting Stars */
+.shooting-star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: 0 0 10px 2px #fff, 0 0 20px 4px rgba(255, 255, 255, 0.5);
+    animation: shooting-star-anim 3s linear forwards;
+}
+
+@keyframes shooting-star-anim {
+    0% {
+        transform: translate(0, 0) scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(-45deg);
+    }
+    100% {
+        transform: translate(400px, 400px) scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+}
