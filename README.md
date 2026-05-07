@@ -54,4 +54,19 @@ Example:
 ## BRIGHT_MODE Mobile View
 <img width="720" height="1314" alt="image" src="https://github.com/user-attachments/assets/ec4fb996-73da-4019-863c-f5b79891aefb" />
 
+## 🌸 Future Improvements
+Firebase wish storage
+Anonymous public wish wall
+Background lo-fi music
+Wish history
+Share wish as image
+More character emotions
+Multi-theme support
+
+## 🧑‍💻 Author
+Made with 🌻 by Adrija Roy
+
+## 📄 License
+This project is open-source and available for learning and creative inspiration.
+
 
