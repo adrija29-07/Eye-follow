@@ -11,7 +11,7 @@
     --border-glass: rgba(255, 255, 255, 0.4);
     --text-color: #2C2418;
     --toggle-track: rgba(255, 255, 255, 0.4);
-    --toggle-thumb: #FFD700;
+    --toggle-thumb: #fcff51c3;
 }
 
 [data-theme="dark"] {
@@ -30,7 +30,7 @@ body {
     background-color: hsl(197, 71%, 73%);
     background-image: url('../assest/morningbg.jpg');
 
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
@@ -281,8 +281,8 @@ h2 {
 }
 
 .luck-btn {
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    color: #fff;
+    background: linear-gradient(135deg, #f7f305, #f9ff7d);
+    color: #1c1515;
     border: none;
     padding: 14px 30px;
     border-radius: 30px;
