@@ -444,71 +444,53 @@ h2 {
 
 /* Responsive Design */
 @media (max-width: 900px) {
-    body {
-        overflow-y: auto; /* Allow scrolling on body */
-    }
-
     header {
         position: absolute;
-        padding: 10px;
+        padding: 5px 10px;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
+        gap: 5px;
         background: rgba(0,0,0,0.1);
         backdrop-filter: blur(5px);
         width: 100%;
     }
 
-    .constellation-board {
-        order: 1;
-        font-size: 16px;
-    }
-
-    .pixel-clock {
-        order: 2;
-        font-size: 10px;
-        padding: 5px 10px;
-    }
-
-    .controls {
-        order: 3;
-    }
+    .constellation-board { font-size: 14px; }
+    .pixel-clock { font-size: 9px; padding: 5px 8px; }
 
     main {
-        flex-direction: column;
-        height: auto;
-        min-height: 100vh;
-        padding: 120px 15px 50px;
-        gap: 40px;
-        justify-content: flex-start;
+        flex-direction: row; /* Side by side as requested */
+        height: 100vh;
+        padding: 60px 10px 0;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
     }
 
     .wish-container {
-        width: 100%;
-        max-width: 320px;
-        padding: 20px;
-        backdrop-filter: blur(6px); /* Reduced blur for clarity */
+        width: 180px; /* Much smaller to fit side-by-side */
+        padding: 15px;
+        backdrop-filter: blur(6px);
+        border-radius: 15px;
     }
 
+    .wish-container h2 { font-size: 16px; margin-bottom: 10px; }
+    .clover-container { font-size: 30px; margin-bottom: 10px; }
+    .wish-input { height: 80px; font-size: 12px; margin-bottom: 10px; }
+    .luck-btn { font-size: 12px; padding: 10px; }
+
     .char-col {
-        width: 100%;
+        width: 140px; /* Small character container */
         display: flex;
         justify-content: center;
     }
 
     .char-wrap {
-        width: 300px; /* Smaller for mobile */
-        height: 360px;
+        width: 140px;
+        height: 180px;
     }
 
-    .theme-toggle .icon {
-        width: 35px;
-        height: 35px;
-    }
-
-    .theme-toggle .icon img {
-        width: 20px;
-        height: 20px;
-    }
+    .theme-toggle .icon { width: 30px; height: 30px; }
+    .theme-toggle .icon img { width: 18px; height: 18px; }
 }
