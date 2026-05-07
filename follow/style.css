@@ -172,11 +172,11 @@ header {
     font-family: 'Press Start 2P', cursive;
     font-size: 16px;
     color: #fff;
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 0px rgba(43, 41, 153, 0.5);
     background: rgba(0, 0, 0, 0.3);
     padding: 10px 15px;
     border-radius: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.434);
     backdrop-filter: blur(5px);
 }
 
@@ -214,31 +214,8 @@ header {
     background: var(--toggle-thumb);
 }
 
-.audio-toggle {
-    background: var(--bg-glass);
-    backdrop-filter: blur(5px);
-    border: 1px solid var(--border-glass);
-    border-radius: 30px;
-    padding: 8px 16px;
-    cursor: pointer;
-    color: var(--text-color);
-    font-weight: bold;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: inherit;
-}
 
-.audio-toggle:hover {
-    background: rgba(255, 255, 255, 0.4);
-}
 
-.controls {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
 
 /* Main Content */
 main {
@@ -380,7 +357,7 @@ h2 {
 #img-expr {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 0px;
     width: 100%;
     height: 100%;
     object-fit: contain;

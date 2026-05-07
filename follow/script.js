@@ -82,11 +82,11 @@ function doBlink() {
         scheduleNextBlink();
         return;
     }
-    
+
     isBlinkClosed = !isBlinkClosed;
     const imgBase = document.getElementById('img-base');
     const eyesContainer = document.getElementById('eyesContainer');
-    
+
     if (isBlinkClosed) {
         imgBase.style.opacity = '0';
         eyesContainer.style.opacity = '0';
@@ -97,7 +97,7 @@ function doBlink() {
         imgBase.style.opacity = '1';
         eyesContainer.style.opacity = '1';
     }
-    
+
     scheduleNextBlink();
 }
 
@@ -134,7 +134,7 @@ document.addEventListener('mousemove', (e) => {
     const f = dist / 220;
     const rawX = Math.cos(angle) * f * 14;
     const clampedX = rawX < 0 ? Math.max(rawX, -5) : rawX;
-    
+
     imgEyes.style.transform = `translate(${clampedX.toFixed(1)}px,${(Math.sin(angle) * f * 10).toFixed(1)}px)`;
 });
 
@@ -192,23 +192,13 @@ luckBtn.addEventListener('click', () => {
     clover.style.transform = `scale(1)`;
 });
 
-// Audio Toggle
-audioToggle.addEventListener('click', () => {
-    if (isPlayingAudio) {
-        pianoAudio.pause();
-        audioToggle.innerText = '🎵 Play Piano';
-    } else {
-        pianoAudio.play().catch(e => console.log('Audio play failed', e));
-        audioToggle.innerText = '🔇 Pause Piano';
-    }
-    isPlayingAudio = !isPlayingAudio;
-});
+
 
 // Theme Toggle (Night/Day) Capsule Pill
 themeToggle.addEventListener('click', () => {
     isNight = !isNight;
     html.setAttribute('data-theme', isNight ? 'dark' : 'light');
-    
+
     document.getElementById('sunIcon').classList.toggle('active', !isNight);
     document.getElementById('moonIcon').classList.toggle('active', isNight);
 
@@ -222,7 +212,7 @@ themeToggle.addEventListener('click', () => {
 
 // Sparkles Follow Cursor
 document.addEventListener('mousemove', (e) => {
-    if (Math.random() < 0.15) { 
+    if (Math.random() < 0.15) {
         const sparkle = document.createElement('div');
         sparkle.className = 'sparkle';
         sparkle.style.left = e.clientX + 'px';
