@@ -1,10 +1,10 @@
-//🌻 Eye Follow Wish Garden
+## 🌻 Eye Follow Wish Garden
 
 A dreamy interactive web experience where users can whisper their wishes into a magical sunflower field ✨🍀
 This project combines calming aesthetics, cute animated characters, eye-follow interactions, and emotional design to create a soft and comforting digital space for both desktop and mobile users.
 Designed with responsive layouts so the experience feels cozy across all screen sizes 📱💻
 
-//✨ Features
+## ✨ Features
 
 🌼 Interactive Experience
 👀 Real-time eye-follow animation
@@ -16,3 +16,16 @@ Designed with responsive layouts so the experience feels cozy across all screen 
 🌠 Shooting stars animation in the background
 ☁️ Floating cloud effects
 💛 Cozy relaxing visual experience
+
+## 📱 Mobile + 💻 Desktop Support
+
+The website is fully responsive and optimized for both but my suggestion is  to be  use it from desktop.
+
+## 🎨 UI Highlights
+Soft cozy aesthetic
+Glassmorphism design
+Animated character reactions
+Dreamy background visuals
+Shooting stars effect
+Smooth hover effects
+Cute emotional interface
