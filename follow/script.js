@@ -190,7 +190,44 @@ luckBtn.addEventListener('click', () => {
     // Reset form
     wishInput.value = '';
     clover.style.transform = `scale(1)`;
+
+    // Random Comfort Message Bubble
+    showComfortMessage();
 });
+
+const comfortMessages = [
+    "Tiny wishes matter too 🌱",
+    "The stars heard you tonight ✨",
+    "Your dreams deserve patience 🌻",
+    "A little hope can grow into something beautiful 🍀",
+    "Even small steps count toward your dream 🌙",
+    "Your wish is resting safely among the stars ⭐",
+    "The universe loves brave little hearts 💛",
+    "May gentle luck follow you today 🍃",
+    "Dreams bloom slowly, just like flowers 🌸",
+    "You are closer than you think ✨",
+    "A lucky breeze has carried your wish away ☁️",
+    "The night sky is cheering for you 🌌",
+    "Some magic takes time 🌱",
+    "Your heart is full of beautiful possibilities 💫",
+    "The clovers are rooting for you 🍀",
+    "May tomorrow bring soft happiness 🌞",
+    "Keep believing in your tiny spark ✨",
+    "Good things often arrive quietly 🌙",
+    "A new star was born from your wish ⭐",
+    "Your dream deserves a chance to shine 🌻"
+];
+
+function showComfortMessage() {
+    const bubble = document.getElementById('messageBubble');
+    const randomMsg = comfortMessages[Math.floor(Math.random() * comfortMessages.length)];
+    bubble.innerText = randomMsg;
+    bubble.classList.add('show');
+
+    setTimeout(() => {
+        bubble.classList.remove('show');
+    }, 5000);
+}
 
 
 

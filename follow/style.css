@@ -185,18 +185,19 @@ header {
     display: flex;
     align-items: center;
     background: var(--toggle-track);
-    border-radius: 20px;
-    padding: 3px;
+    border-radius: 30px;
+    padding: 5px;
     cursor: pointer;
-    gap: 2px;
+    gap: 5px;
     transition: background 0.3s;
-    border: none;
+    border: 2px solid var(--border-glass);
     outline: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .theme-toggle .icon {
-    width: 36px;
-    height: 36px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -205,8 +206,8 @@ header {
 }
 
 .theme-toggle .icon img {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
 }
 
@@ -389,5 +390,90 @@ h2 {
     100% {
         opacity: 0;
         transform: translateY(-100vh) translateX(150px) scale(0.3) rotate(360deg);
+    }
+}
+
+/* Message Bubble */
+.message-bubble {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(255, 255, 255, 0.95); /* Solid white background for visibility */
+    border: 2px solid #fff;
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #2C2418;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    white-space: nowrap;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .message-bubble {
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+}
+
+.message-bubble.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.message-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+        height: auto;
+        padding: 80px 20px 40px;
+        gap: 30px;
+        overflow-y: auto;
+    }
+
+    .wish-container {
+        width: 100%;
+        max-width: 350px;
+        padding: 20px;
+    }
+
+    .char-wrap {
+        width: 100%;
+        max-width: 350px;
+        height: 420px;
+    }
+
+    header {
+        padding: 15px 20px;
+    }
+
+    .constellation-board {
+        font-size: 18px;
+    }
+
+    .pixel-clock {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .theme-toggle .icon {
+        width: 38px;
+        height: 38px;
     }
 }
