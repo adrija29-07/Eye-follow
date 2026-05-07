@@ -491,6 +491,10 @@ h2 {
         height: 180px;
     }
 
+    .eyes-container {
+        transform: scale(0.45); /* Smaller eyes for mobile */
+    }
+
     .theme-toggle .icon { width: 30px; height: 30px; }
     .theme-toggle .icon img { width: 18px; height: 18px; }
 }
