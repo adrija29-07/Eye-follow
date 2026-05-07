@@ -29,3 +29,14 @@ Dreamy background visuals
 Shooting stars effect
 Smooth hover effects
 Cute emotional interface
+
+## 🛠️ Tech Stack
+HTML5
+CSS3
+JavaScript
+
+## 🚀 Live Demo
+
+🌐 Add your deployed Vercel link here:
+https://eye-follow-d478.vercel.app/ 
+
