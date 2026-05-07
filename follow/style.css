@@ -363,7 +363,7 @@ h2 {
     pointer-events: none;
     z-index: 2;
     /* Ensures eyes sit on top of the base image properly */
-    transition: opacity 0.0s;
+    transition: opacity 0.2s;
 }
 
 #img-eyes {
