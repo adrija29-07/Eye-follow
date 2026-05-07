@@ -28,7 +28,7 @@ body {
     min-height: 100vh;
     overflow: hidden;
     background-color: hsl(197, 71%, 73%);
-    background-image: url('../assest/morningbg.jpg');
+    background-image: url('assest/morningbg.jpg');
 
     background-size: cover;
     background-position: center;
@@ -40,7 +40,7 @@ body {
 }
 
 [data-theme="dark"] body {
-    background-image: url('../assest/nightbg.jpg');
+    background-image: url('assest/nightbg.jpg');
     background-color: #0b1021;
 }
 

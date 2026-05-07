@@ -1,10 +1,10 @@
 const IMGS = {
-    blink: '../assest/blink-assets.png',
-    cry: '../assest/cry-assets-follow.png',
-    shock: '../assest/shock-assests.png',
-    sleepy: '../assest/sleepy-assets.png',
-    wink: '../assest/wink-assests.png',
-    smile: '../assest/smile.png'
+    blink: 'assest/blink-assets.png',
+    cry: 'assest/cry-assets-follow.png',
+    shock: 'assest/shock-assests.png',
+    sleepy: 'assest/sleepy-assets.png',
+    wink: 'assest/wink-assests.png',
+    smile: 'assest/smile.png'
 };
 
 const imgEyes = document.getElementById('img-eyes');
