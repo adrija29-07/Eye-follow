@@ -27,8 +27,8 @@ body {
     font-family: 'Nunito', sans-serif;
     min-height: 100vh;
     overflow: hidden;
-    background-color: #87CEEB;
-    background-image: url('../assest/star%20morning.jpg');
+    background-color: hsl(197, 71%, 73%);
+    background-image: url('../assest/morningbg.jpg');
 
     background-size: contain;
     background-position: center;
@@ -40,7 +40,7 @@ body {
 }
 
 [data-theme="dark"] body {
-    background-image: url('../assest/night-mode.jpg');
+    background-image: url('../assest/nightbg.jpg');
     background-color: #0b1021;
 }
 
